@@ -10,13 +10,17 @@ sundaynight=True
 #input previous
 
 def filter1(new1, i, j):
-        if i > 2 : # Eliminate items which are having more than 3 shifts of same kind 
-                for o in range(i):
+        if i > 2 : # Eliminate items which are having more than 3 shifts of same kind          
+                for p in range(j+1):
                         ENM={"E":0, "N":0, "M":0, "O":0}
-                        for p in range(j):
+                        for o in range(i+1):
                                 ENM[new1[o][p]]+=1
+#                        print(ENM)
                         if 4 in sorted(ENM.values()): 
                                 return False
+        #if i==3 and j==6 and new1[i] == "EEEONME" and new1[2] == "NMONMEE" and new1[1] == "EOENMEE":
+            #'ONMENME', 'EOENMEE', 'NMONMEE', 'EEEONME'
+        #    print(new1)
         
 
         if new1[i].count("O") > 1:
@@ -97,6 +101,7 @@ for i in range(people):
                 for e in p:
                         for shift in shiftslist:
                                 if sundaynight and i==exception and j==5 and not shift == "N": continue # optimization for night shift on sunday
+                                if sundaynight and i==exception and j==3 and not shift == "E": continue # optimization for night shift on sunday
                                 new1=copy.deepcopy(e)
                                 new1[i]+=shift
                                 if filter1(new1, i, j):
@@ -110,6 +115,6 @@ import sys
 import pickle
 a=pickle.dumps(newp)
 
-f=open("sundaynight.txt","wb")
+f=open("sundaynightfridayevening.txt","wb")
 f.write(a)
 f.close()
