@@ -21,6 +21,8 @@ def filter1(new1, i, j):
         if new1[i].count("M") > 3:
                 return False
         #print(new1)
+        if new1[i][j] == "O" and j > 0 and (new1[i][j-1]  == "N"):
+                return False
         if new1[i][j] == "N" and j > 0 and (new1[i][j-1]  == "N"):
                 return False
         if new1[i][j] == "E" and j > 0 and (new1[i][j-1]  == "N"):
